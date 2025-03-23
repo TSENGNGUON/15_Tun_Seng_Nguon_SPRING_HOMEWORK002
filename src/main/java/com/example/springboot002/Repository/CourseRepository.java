@@ -49,6 +49,11 @@ public interface CourseRepository {
     @ResultMap("courseMapper")
     public Course deleteCourseById(int id);
 
+    @Insert("""
+    INSERT INTO student_course (student_id, course_id) VALUES (#{studentId}, #{courseId})
+""")
+    void addStudentIdAndCourseID(int studentId, int courseId);
+
 }
 
 

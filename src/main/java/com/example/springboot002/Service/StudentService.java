@@ -9,5 +9,6 @@ public interface StudentService {
     public List<Student> getAllStudents();
 
     Student addStudent(StudentRequest studentRequest);
+    Student getStudentById(int id);
 }
 

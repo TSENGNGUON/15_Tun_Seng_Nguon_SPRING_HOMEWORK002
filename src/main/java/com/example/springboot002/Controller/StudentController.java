@@ -37,7 +37,7 @@ public class StudentController {
     @PostMapping
     public ResponseEntity<ApiResponse<Student>> addStudent(@RequestBody StudentRequest  studentRequest) {
         ApiResponse<Student> apiResponse = ApiResponse.<Student>builder()
-                .message("All students have been successfully fetched.")
+                .message("The student has been successfully added.")
                 .status(HttpStatus.OK)
                 .payload(studentService.addStudent(studentRequest))
                 .timestamp(LocalDateTime.now())

@@ -21,9 +21,21 @@ public interface StudentRepository {
     public List<Student> getAllStudents();
 
 
-    @Insert("""
-    INSERT INTO students (student_name, email, phone_number) VALUES (#{request.studentName}, #{request.email}, #{request.phoneNumber})
+    @Select("""
+    INSERT INTO students (student_name, email, phone_number) VALUES (#{request.studentName}, #{request.email}, #{request.phoneNumber}) returning *
     """)
-    @ResultMap("studentMapper")
+    @Results(id = "studentMapper2", value = {
+            @Result(property = "studentId", column = "student_id"),
+            @Result(property = "studentName", column = "student_name"),
+            @Result(property = "email", column = "email"),
+            @Result(property = "phoneNumber", column = "phone_number"),
+            @Result(property = "courses", column = "student_id", many = @Many(select = "com.example.springboot002.Repository.CourseRepository.getCourseById"))
+    })
     Student addStudent(@Param("request") StudentRequest studentRequest);
+
+    @Select("""
+    SELECT * FROM students WHERE student_id = #{studentId} 
+""")
+    @ResultMap("studentMapper2")
+    Student getStudentById(int studentId);
 }
