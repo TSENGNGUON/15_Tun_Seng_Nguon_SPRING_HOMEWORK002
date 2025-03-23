@@ -41,7 +41,7 @@ public interface InstructorRepository {
 
 
 
-    @Select("""
+    @Delete("""
         DELETE FROM instructors WHERE instructor_id = #{id} returning *
 """)
     @ResultMap("instructorMapper")

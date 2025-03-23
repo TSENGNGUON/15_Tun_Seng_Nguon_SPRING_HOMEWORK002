@@ -1,15 +1,15 @@
-package com.example.springboot002.Model;
+package com.example.springboot002.Dto.Request;
 
+import com.example.springboot002.Model.Instructor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class Course {
-    private int courseId;
+@NoArgsConstructor
+public class CourseRequest {
     private String courseName;
     private String description;
-    private Instructor instructor;
+    private int instructor_id;
 }
